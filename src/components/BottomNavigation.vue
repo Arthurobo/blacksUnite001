@@ -1,10 +1,8 @@
 <template>
   <div class="overflow-hidden show-on-scroll hidden-md-and-up">
 
-    <v-bottom-navigation app
-      v-model="activeBtn"
-      :input-value="showNav"
-    >
+<v-container>
+    <v-bottom-navigation app v-model="activeBtn" :input-value="showNav">
       <v-spacer></v-spacer>
       <v-btn>
         <span>Home</span>
@@ -39,6 +37,7 @@
       <v-spacer></v-spacer>
 
     </v-bottom-navigation>
+    </v-container>
   </div>
 </template>
 

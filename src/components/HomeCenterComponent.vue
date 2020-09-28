@@ -1,55 +1,43 @@
 <template>
   <div>
-          <h4>Add a Post</h4>
-          <v-card class="d-inline-block mx-auto" v-for="post in posts" :key="post">
-            <v-container>
-              <v-row justify="space-between">
-                <v-col cols="auto">
-                  <h4>{{post.title}}</h4>
-                  <v-img
-                    height="200"
-                    width="200"
-                    src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
-                  ></v-img>
-                  <p>{{post.content }}</p>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
+          <AddPost />
+            <Posts />
+
   </div>
 </template>
 
 
 <script>
+  import axios from 'axios'
+  import AddPost from './AddPost'
+  import Posts from './Posts'
 
 export default {
+
+  components: {
+    AddPost,
+    Posts
+  },
   data() {
     return {
-      posts: [
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-      ],
+
+      posts: null,
     };
   },
-};
+
+  mounted () {
+    axios
+    .get('http://127.0.0.1:8000/api/posts/',)
+    .then(response => (
+      this.posts = response.data
+    ))
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
+
+
+}
 </script>
 
 <style scoped>
@@ -70,7 +58,9 @@ export default {
   background-color: yellow;
 }
 
-.flexing {
+.post-content {
+  padding: 0px 100px;
+  text-align: left;
 }
 </style>
 

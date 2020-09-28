@@ -15,7 +15,7 @@
 
       <v-text-field flat solo-inverted hide-details 
                     prepend-inner-icon="mdi-magnify" 
-                    label="Search" 
+                     
                     class="hidden-sm-and-down">
       </v-text-field>
       <v-spacer></v-spacer>
@@ -29,7 +29,7 @@
       </v-btn>
         </router-link>
       <v-spacer></v-spacer>
-        <router-link to="/nearby">
+        <router-link to="/businesses">
       <v-btn icon class="hidden-sm-and-down btn-today">
         <v-icon>mdi-map-marker</v-icon>
       </v-btn>

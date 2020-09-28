@@ -1,9 +1,20 @@
 <template>
   <div>
           <h2>Our Heritage</h2>
+          <v-text-field
+            flat
+            solo-inverted
+            hide-details
+            prepend-inner-icon="mdi-magnify"
+            
+            id="heritage-search"
+            align="center"
+            style="margin-left: 10px; margin-right: 40px"
+          >
+          </v-text-field>
           <v-container>
-            <v-row>
-              <v-col cols="auto" align="center" v-for="heritage in ourHeritage" :key="heritage">
+            <v-row class="row-space" >
+              <v-col cols="12" class="our-heritage" align="left" v-for="heritage in ourHeritage" :key="heritage">
                 <h4>{{heritage.title}}</h4>
               </v-col>
               <v-spacer></v-spacer>
@@ -15,58 +26,26 @@
 
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
-      posts: [
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-      ],
-      ourHeritage: [
-        { title: "Yoruba Culture" },
-        { title: "Igbo Culture" },
-        { title: "Eleme Culture" },
-        { title: "Ogoni Culture" },
-        { title: "Jamaican Culture" },
-        { title: "Ibibio Culture" },
-        { title: "Etche Culture" },
-        { title: "Yoruba Culture" },
-        { title: "Igbo Culture" },
-        { title: "Eleme Culture" },
-      ],
-      shopsNearMe: [
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-      ],
+      ourHeritage: {
+        title: "",
+      },
+
     };
+  },
+
+  mounted () {
+    axios
+    .get('http://127.0.0.1:8000/api/blog/')
+    .then(response => (
+      this.ourHeritage = response.data
+    ))
+    .catch(e => {
+      this.errors.push(e)
+    })
   },
 };
 </script>
@@ -89,7 +68,13 @@ export default {
   background-color: yellow;
 }
 
-.flexing {
+.our-heritage {
+  padding-left: 20px;
 }
+
+.row-space {
+  margin-bottom: 200px;
+}
+
 </style>
 

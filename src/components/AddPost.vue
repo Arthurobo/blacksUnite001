@@ -18,16 +18,11 @@
           <v-container>
                 <v-form ref="form"   v-if="!submitted"> 
             <v-row>
-                    <v-col cols="3" >
-                        <v-file-input v-model.lazy="posts.image" accept="image/*" 
-                                      label="Click to Upload">
-                        </v-file-input>
-                    </v-col> 
+              <v-col cols="12" >
+                <v-text-field v-model.lazy="posts.user" label="User" placeholder="User" required></v-text-field>
+              </v-col>
             </v-row>
             <v-row>
-              <v-col cols="12" >
-                <v-text-field v-model.lazy="posts.title" label="TItle" placeholder="Title" required></v-text-field>
-              </v-col>
               <v-col cols="12" >
                 <v-text-field v-model.lazy="posts.content" label="Content" placeholder="Content" required></v-text-field>
               </v-col>
@@ -57,8 +52,7 @@
   data() {
     return {
         posts: {
-            image: "",
-            title: "",
+            user: "",
             content: "",
         },
         submitted: false,
@@ -68,7 +62,7 @@
 
   methods: {
       post: function() {
-          this.$http.post('http://127.0.0.1:8000/api/tests/', this.posts ).then(function(data) {
+          this.$http.post('http://127.0.0.1:8000/api/posts/', this.posts ).then(function(data) {
               console.log(data);
               this.submitted = true;
           });

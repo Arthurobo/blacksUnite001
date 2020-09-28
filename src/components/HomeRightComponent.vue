@@ -2,15 +2,20 @@
   <div>
         <h3 align="center">Top Businesses Near You</h3>
         <v-container>
-          <v-row justify="space-between">
-            <v-col cols="auto" class="d-flex" v-for="shop in shopsNearMe" :key="shop" >
+          <v-row justify="space-between" class="row-space">
+            <v-col cols="auto" class="d-flex" v-for="business in topBusinesses" :key="business.id" >
                   <v-img height="80" width="80" 
                     src="https://cdn.vuetifyjs.com/images/cards/store.jpg">
                   </v-img>
+                  <!-- <v-img height="80" width="80" 
+                    :src=" business.image" 
+                    alt="https://cdn.vuetifyjs.com/images/cards/store.jpg">
+                  </v-img> -->
               <div>
-              <p>{{ shop.address }}</p>
+              <p>{{ business.office_address }}</p>
               </div>
             </v-col>
+            <v-btn color="green" align="center">Learn More</v-btn>
           </v-row>
         </v-container>
   </div>
@@ -18,59 +23,29 @@
 
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
-      posts: [
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-        {
-          title: "Why I like the Black Community",
-          content:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, sint!",
-        },
-      ],
-      ourHeritage: [
-        { title: "Yoruba Culture" },
-        { title: "Igbo Culture" },
-        { title: "Eleme Culture" },
-        { title: "Ogoni Culture" },
-        { title: "Jamaican Culture" },
-        { title: "Ibibio Culture" },
-        { title: "Etche Culture" },
-        { title: "Yoruba Culture" },
-        { title: "Igbo Culture" },
-        { title: "Eleme Culture" },
-      ],
-      shopsNearMe: [
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-        { name: 'Pivla', address: 'No. 25 East West Road Alode Eleme Rivers State'},
-      ],
+      topBusinesses: {
+        image: "",
+        country_location_of_page: "",
+        office_address: "",
+      }
     };
   },
+
+  mounted () {
+    axios
+    .get('http://127.0.0.1:8000/api/business-pages/list/')
+    .then(response => (
+      this.topBusinesses = response.data
+    ))
+    .catch(e => {
+      this.errors.push(e)
+    })
+  }
 };
 </script>
 
@@ -93,6 +68,10 @@ export default {
 }
 
 .flexing {
+}
+
+.row-space {
+  margin-bottom: 200px;
 }
 </style>
 

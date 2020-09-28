@@ -13,8 +13,8 @@
         <Profile />
         <Search />
         <Messages />
-        <Nearby />
         <Test />
+        <JobsAdd />
       <!--<Login />
         <SignUp />-->
       </router-view>   
@@ -37,8 +37,8 @@ import Businesses from './components/Businesses';
 import Profile from './components/Profile';
 import Search from './components/Search';
 import Messages from './components/Messages';
-import Nearby from './components/Nearby';
 import Test from './components/Test';
+import JobsAdd from './components/JobsAdd';
 
 export default {
   name: 'App',
@@ -55,8 +55,8 @@ export default {
     Navbar,
     BottomNavigation,
     Messages,
-    Nearby,
     Test,
+    JobsAdd,
   },
 
   data: () => ({

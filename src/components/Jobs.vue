@@ -14,8 +14,10 @@
           >
           </v-text-field>
         </v-col>
-        <v-col cols="4">
-          <JobsDialog />
+        <v-col cols="4" align="right">
+        <router-link to="/jobs/add">
+          <v-btn color="blue" dark style="border-radius: 59px">Post A Job</v-btn>
+        </router-link>
         </v-col>
       </v-row>
       <v-row>
@@ -38,12 +40,12 @@
 </template>
 
 <script>
-import JobsDialog from "./JobsDialog";
+//import JobsDialog from "./JobsDialog";
 import JobsCard from "./JobsCard";
 
 export default {
   components: {
-    JobsDialog,
+    //JobsDialog,
     JobsCard,
   },
 };
@@ -63,5 +65,10 @@ export default {
 
 .job-top-color {
   background-color: #f0f0f0;
+}
+
+a {
+text-decoration: none;
+
 }
 </style>
