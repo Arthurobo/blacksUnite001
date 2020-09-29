@@ -25,7 +25,11 @@
             <v-row>
               <v-col cols="12" >
                 <v-text-field v-model.lazy="posts.content" label="Content" placeholder="Content" required></v-text-field>
+                
+                <!-- <v-file-input v-model.lazy="posts.image" accept="image/*" 
+                label="Click to Upload" ></v-file-input>  -->
               </v-col>
+              
             </v-row>
           <v-spacer></v-spacer>
             <v-btn color="blue" dark @click.prevent="post">Upload</v-btn>
@@ -54,6 +58,7 @@
         posts: {
             user: "",
             content: "",
+            //image: "",
         },
         submitted: false,
         dialog: false,
@@ -62,6 +67,8 @@
 
   methods: {
       post: function() {
+     //let headers = {'Content-Type': 'application/json;charset=utf-8'};
+          //this.$http.post('http://127.0.0.1:8000/api/posts/', this.posts,  {headers: headers} ).then(function(data) {
           this.$http.post('http://127.0.0.1:8000/api/posts/', this.posts ).then(function(data) {
               console.log(data);
               this.submitted = true;

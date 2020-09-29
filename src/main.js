@@ -6,6 +6,7 @@ import Routes from './routes';
 import VueResource from 'vue-resource';
 
 
+
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(VueResource);

@@ -15,8 +15,8 @@ import JobsAdd from './components/JobsAdd.vue';
 
 export default [
     { path: '/', component: Home },
-    { path: '/login', component: Login },
-    { path: '/sign-up', component: SignUp },
+    { path: '/users/login', component: Login },
+    { path: '/users/sign-up', component: SignUp },
     { path: '/jobs', component: Jobs },
     { path: '/jobs/add', component: JobsAdd },
     { path: '/notifications', component: Notifications },
